@@ -61,8 +61,8 @@ export const UserSubscriptionProvider: React.FC<{ children: ReactNode; user: Use
             contentAnalysis: 0,
             lastUsageTimestamp: serverTimestamp()
           };
+          // The onSnapshot listener will be triggered by this update, ensuring state consistency.
           await updateDoc(userDocRef, { usage: newUsage });
-          setUsage({ ...newUsage, lastUsageTimestamp: Timestamp.now() });
         } else {
           setUsage(currentUsage);
         }

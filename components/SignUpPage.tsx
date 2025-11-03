@@ -41,7 +41,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigateToLogin }) => {
         uid: user.uid,
         displayName: fullName,
         email: user.email,
-        createdAt: new Date(),
+        createdAt: serverTimestamp(),
         subscriptionPlan: 'free',
         usage: {
           keywordGenerator: 0,
