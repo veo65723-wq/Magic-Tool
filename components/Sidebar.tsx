@@ -56,10 +56,11 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, setCurrentPage, isOpen, 
         </div>
         
         <nav className="flex-1 space-y-2">
-          {/* FIX: Added translated text as children to all NavItem components to provide the link text and fix the missing 'children' prop error. */}
+          {/* FIX: Add missing 'children' prop to NavItem components to display link text. */}
           <NavItem page="dashboard" icon={ChartBarIcon}>{t('sidebarDashboard')}</NavItem>
           <NavItem page="market-analysis" icon={SearchIcon}>{t('sidebarMarketAnalysis')}</NavItem>
           <NavItem page="competitor-analysis" icon={UsersIcon}>{t('sidebarCompetitorAnalysis')}</NavItem>
+          <NavItem page="audience-persona" icon={UsersIcon} pro>{t('sidebarAudiencePersona')}</NavItem>
           <NavItem page="keyword-generator" icon={LightBulbIcon}>{t('sidebarKeywordGenerator')}</NavItem>
           <NavItem page="content-analysis" icon={DocumentTextIcon}>{t('sidebarContentAnalysis')}</NavItem>
           <NavItem page="magic-tool" icon={MagicWandIcon} pro>{t('sidebarMagicTool')}</NavItem>
@@ -80,7 +81,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, setCurrentPage, isOpen, 
             </button>
           )}
           <div className="space-y-2">
-            {/* FIX: Added translated text as children to all NavItem components to provide the link text and fix the missing 'children' prop error. */}
+            {/* FIX: Add missing 'children' prop to NavItem components to display link text. */}
             <NavItem page="settings" icon={CogIcon}>{t('sidebarSettings')}</NavItem>
             <NavItem page="account" icon={ShieldCheckIcon}>{t('sidebarAccount')}</NavItem>
             <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:bg-slate-700/50 hover:text-red-400">

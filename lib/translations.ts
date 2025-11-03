@@ -45,6 +45,7 @@ export const translations = {
     sidebarDashboard: 'لوحة التحكم',
     sidebarMarketAnalysis: 'تحليل السوق',
     sidebarCompetitorAnalysis: 'تحليل المنافسين',
+    sidebarAudiencePersona: 'مولّد شخصيات الجمهور',
     sidebarKeywordGenerator: 'مولد الكلمات المفتاحية',
     sidebarContentCoPilot: 'مساعد المحتوى',
     sidebarVisualAnalyzer: 'المحلل البصري',
@@ -210,6 +211,13 @@ export const translations = {
     sendButton: 'إرسال',
     chatInitialMessage: 'رائع، أنا جاهز للإجابة على أسئلتك المتابعة حول تحليل السوق هذا.',
 
+    audiencePersonaPageTitle: 'مولّد شخصيات الجمهور',
+    audiencePersonaPageDescription: 'صِف منتجك أو خدمتك، وسنقوم بإنشاء ملفات تعريف مفصلة لجمهورك المستهدف.',
+    audiencePersonaPlaceholder: 'مثال: تطبيق لياقة بدنية للهواتف يستهدف المبتدئين مع خطط تمارين مخصصة...',
+    generatePersonasButton: 'إنشاء الشخصيات',
+    generatingPersonas: 'جاري إنشاء شخصيات جمهورك...',
+    generatedPersonasTitle: 'شخصيات الجمهور المقترحة',
+    errorGeneratingPersonas: 'فشل في إنشاء الشخصيات. يرجى المحاولة مرة أخرى.',
 
     // Landing Page
     landingHeroTitle: 'اكتشف رؤى السوق العميقة بضغطة زر',
@@ -301,6 +309,7 @@ export const translations = {
     sidebarDashboard: 'Dashboard',
     sidebarMarketAnalysis: 'Market Analysis',
     sidebarCompetitorAnalysis: 'Competitor Analysis',
+    sidebarAudiencePersona: 'Audience Persona Generator',
     sidebarKeywordGenerator: 'Keyword Generator',
     sidebarContentCoPilot: 'Content Co-Pilot',
     sidebarVisualAnalyzer: 'Visual Analyzer',
@@ -465,6 +474,14 @@ export const translations = {
     chatPlaceholder: 'Ask a follow-up question...',
     sendButton: 'Send',
     chatInitialMessage: 'Great, I am ready to answer your follow-up questions about this market analysis.',
+
+    audiencePersonaPageTitle: 'Audience Persona Generator',
+    audiencePersonaPageDescription: 'Describe your product or service, and we\'ll generate detailed profiles for your target audience.',
+    audiencePersonaPlaceholder: 'e.g., A mobile fitness app targeting beginners with personalized workout plans...',
+    generatePersonasButton: 'Generate Personas',
+    generatingPersonas: 'Generating your audience personas...',
+    generatedPersonasTitle: 'Suggested Audience Personas',
+    errorGeneratingPersonas: 'Failed to generate personas. Please try again.',
 
     // Landing Page
     landingHeroTitle: 'Unlock Deep Market Insights Instantly',

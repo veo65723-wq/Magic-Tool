@@ -5,7 +5,7 @@ import ReportDetailModal from './ReportDetailModal';
 import ConfirmationModal from './ConfirmationModal';
 import { useTranslations } from '../hooks/useTranslations';
 import { auth, db } from '../firebase';
-import { collection, query, where, onSnapshot, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
 import { SpinnerIcon, DocumentTextIcon } from './icons';
 
 const ReportsPage: React.FC = () => {
@@ -25,8 +25,8 @@ const ReportsPage: React.FC = () => {
     const reportsCollection = collection(db, 'reports');
     const q = query(
       reportsCollection,
-      where('userId', '==', currentUser.uid),
-      orderBy('date', 'desc')
+      where('userId', '==', currentUser.uid)
+      // Removed orderBy('date', 'desc') to prevent index error. Sorting is now done on the client.
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -34,6 +34,10 @@ const ReportsPage: React.FC = () => {
         id: doc.id,
         ...doc.data()
       } as Report));
+      
+      // Sort reports by date on the client-side (newest first)
+      fetchedReports.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
       setReports(fetchedReports);
       setIsLoading(false);
     }, (error) => {

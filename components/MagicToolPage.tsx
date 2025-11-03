@@ -30,7 +30,7 @@ const MagicToolPage: React.FC = () => {
         }
 
         setIsLoading(true);
-        setResult(null);
+        setResult(''); // Use empty string to indicate loading has started
         setError(null);
         setIsSaved(false);
 
@@ -39,16 +39,21 @@ const MagicToolPage: React.FC = () => {
             
             const prompt = `Act as an expert marketing assistant. Provide a comprehensive, well-structured, and actionable answer to the following user query. Format the response using markdown for readability. The response should be in Arabic. User Query: ${query}`;
 
-            const response = await ai.models.generateContent({
+            const responseStream = await ai.models.generateContentStream({
                 model: "gemini-2.5-pro",
                 contents: prompt,
             });
-            
-            setResult(response.text);
+
+            let fullText = '';
+            for await (const chunk of responseStream) {
+                fullText += chunk.text;
+                setResult(fullText);
+            }
 
         } catch (err) {
             console.error("Error using Magic Tool:", err);
             setError("Failed to get a response. Please try again.");
+            setResult(null); // Clear result on error
         } finally {
             setIsLoading(false);
         }
@@ -105,27 +110,30 @@ const MagicToolPage: React.FC = () => {
 
             {error && <Card className="text-center py-8 bg-red-500/20 border-red-500/50"><p className="text-red-300">{error}</p></Card>}
 
-            {isLoading && (
+            {(isLoading && result === '') && (
                  <Card className="text-center py-16">
                     <SpinnerIcon className="w-12 h-12 text-blue-400 mx-auto" />
                     <p className="mt-4 text-white">{t('magicToolLoadingText')}</p>
                 </Card>
             )}
 
-            {result && (
+            {result !== null && (
                 <Card>
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-bold text-white">{t('analysisResults')}</h3>
                         <button 
                             onClick={handleSaveReport}
-                            disabled={isSaving || isSaved}
+                            disabled={isLoading || isSaving || isSaved}
                             className="bg-slate-700 hover:bg-slate-600 disabled:bg-slate-600/50 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center gap-2"
                         >
                             {isSaving ? <SpinnerIcon className="w-5 h-5"/> : null}
                             {isSaving ? t('savingReportButton') : isSaved ? t('savedReportButton') : t('saveReportButton')}
                         </button>
                     </div>
-                    <pre className="text-gray-300 whitespace-pre-wrap font-sans bg-slate-900/50 p-4 rounded-lg">{result}</pre>
+                    <div className="text-gray-300 whitespace-pre-wrap font-sans bg-slate-900/50 p-4 rounded-lg min-h-[100px]">
+                        {result}
+                        {isLoading && <span className="typing-cursor">|</span>}
+                    </div>
                 </Card>
             )}
 

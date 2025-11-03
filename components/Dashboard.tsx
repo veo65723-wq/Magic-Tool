@@ -14,7 +14,8 @@ import SettingsPage from './SettingsPage';
 import AccountSettingsPage from './AccountSettingsPage';
 import UpgradePage from './UpgradePage';
 import ContentAnalysisPage from './ContentAnalysisPage';
-import MagicToolPage from './MagicToolPage'; // Import MagicToolPage
+import MagicToolPage from './MagicToolPage';
+import AudiencePersonaPage from './AudiencePersonaPage'; // Import AudiencePersonaPage
 
 export type Page = 
   | 'dashboard' 
@@ -29,7 +30,8 @@ export type Page =
   | 'account'
   | 'upgrade'
   | 'content-analysis'
-  | 'magic-tool'; // Add magic-tool page
+  | 'magic-tool'
+  | 'audience-persona'; // Add audience-persona page
 
 interface DashboardProps {
   user: User;
@@ -47,6 +49,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
         return <MarketAnalysisPage />;
       case 'competitor-analysis':
         return <CompetitorAnalysisPage />;
+      case 'audience-persona': // Add case for audience-persona
+        return <AudiencePersonaPage />;
       case 'keyword-generator':
         return <KeywordGeneratorPage />;
       case 'content-copilot':
@@ -65,7 +69,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
         return <AccountSettingsPage user={user} />;
       case 'upgrade':
         return <UpgradePage />;
-      case 'magic-tool': // Add case for magic-tool
+      case 'magic-tool':
         return <MagicToolPage />;
       default:
         return <DashboardHomePage />;
